@@ -15,7 +15,7 @@ Before running the Identity Service, ensure that you have the following prerequi
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/identity-service.git
+   git clone https://github.com/darmis007/identity-service.git
    ```
 
 2. Navigate to the project directory:
@@ -81,10 +81,12 @@ The Identity Service provides the following endpoints:
   }
   ```
 
-## Contributing
+## Running Tests
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please create a new issue or submit a pull request.
+To run the tests for the Identity Service, use the following command:
 
-## License
+```bash
+npm test
+```
 
-This project is licensed under the [MIT License](LICENSE).
+This command will execute the test cases and provide the test results.
