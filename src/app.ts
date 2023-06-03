@@ -1,5 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import identityRouter from './routes/identityRouter';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 
@@ -13,7 +16,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ error: 'An error occurred.' });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.SERVER_PORT || 3000, () => {
   console.log('Server is running on port 3000');
 });
 
