@@ -10,6 +10,7 @@ Before running the Identity Service, ensure that you have the following prerequi
 - npm (Node Package Manager)
 - MySQL database
 
+An instance of MySQL is already installed and running on port 3306
 ## Installation
 
 1. Clone the repository:
