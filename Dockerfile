@@ -13,9 +13,6 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Copy the .env file
-COPY .env .
-
 # Build the TypeScript code
 RUN npx tsc
 

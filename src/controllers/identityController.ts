@@ -42,20 +42,28 @@ const identityController = {
         secondaryContacts.push(secondaryContact);
         logger.info('New secondary contact created:', secondaryContact);
       } else if (numPrimaryContacts > 1) {
-        // Convert the primary contact created later to a secondary contact
-        const newSecondaryContact = primaryContacts.pop();
-        if (newSecondaryContact) {
+        // Convert the primary contacts created later to secondary contacts
+        for (let i = 1; i < numPrimaryContacts; i++) {
+          const newSecondaryContact = primaryContacts[i];
           // Set the linkedId of the new secondary contact to the first primary contact
-          primaryContact = primaryContacts[0];
           secondaryContact = await contactService.updateContact(
             newSecondaryContact,
             LinkPrecedence.Secondary,
-            primaryContact.id
+            primaryContacts[0].id
           );
           secondaryContacts.push(secondaryContact);
           logger.info('Primary contact updated to following secondary contact:', secondaryContact);
         }
-      }
+
+          // Update linkedId of secondary contacts linked to the primary contact being updated
+          for (const secondary of secondaryContacts) {
+            if (secondary.linkedId !== primaryContacts[0].id) {
+              await contactService.updateContact(secondary, LinkPrecedence.Secondary, primaryContacts[0].id);
+              logger.info('LinkedId updated for secondary contact:', secondary);
+            }
+          }
+          primaryContact = primaryContacts[0]
+        }
 
       // Prepare the response payload with contact details
       const responsePayload = {

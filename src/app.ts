@@ -1,8 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import identityRouter from './routes/identityRouter';
-import dotenv from 'dotenv';
-
-dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 
